@@ -20,7 +20,8 @@ from .const import CONF_MQTT_HOST, CONF_MQTT_PORT, CONF_SIGN_KEY, CONF_SSID, DOM
 _LOGGER = logging.getLogger(__name__)
 
 ADDON_HOSTNAME = "a06532c7-airmx-addon"
-DEFAULT_MQTT_PORT = 1883
+DEFAULT_WEB_PORT = 25880
+DEFAULT_MQTT_PORT = 25883
 
 
 @dataclass
@@ -208,7 +209,7 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
         self._discover_ble_devices()
 
         http = async_get_clientsession(self.hass)
-        response = await http.get(f"http://{ADDON_HOSTNAME}/_devices")
+        response = await http.get(f"http://{ADDON_HOSTNAME}:{DEFAULT_WEB_PORT}/_devices")
         response.raise_for_status()
         for data in await response.json():
             device = AirWaterDeviceInfo.from_dict(data)

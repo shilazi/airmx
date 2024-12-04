@@ -5,9 +5,9 @@ FROM $BUILD_FROM
 WORKDIR /
 
 RUN apk add --no-cache python3 py3-pip mosquitto && \
-    pip3 install flask==3.0.0
+    pip3 install flask==3.0.0 gunicorn==21.2.0
 
 COPY rootfs /
 
 VOLUME /data
-EXPOSE 80 1883
+EXPOSE 25880 25883
