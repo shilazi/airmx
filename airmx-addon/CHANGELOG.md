@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Change ports, run with gunicorn
+
 ## 0.1.2
 
 * Добавлена поддержка A3S
